@@ -3,12 +3,11 @@ package com.and1ss.user_service.api;
 import com.and1ss.user_service.api.dto.AccountInfoRetrievalDTO;
 import com.and1ss.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -23,5 +22,13 @@ public class AccountInfoController {
     @GetMapping("/{id}")
     private AccountInfoRetrievalDTO getUserById(@PathVariable("id") UUID userId) {
         return AccountInfoRetrievalDTO.fromAccountInfo(userService.findUserById(userId));
+    }
+
+    @GetMapping("/list")
+    private List<AccountInfoRetrievalDTO> getUsersByListOfIds(@RequestBody List<UUID> ids) {
+        return userService.findUsersByListOfIds(ids)
+                .stream()
+                .map(AccountInfoRetrievalDTO::fromAccountInfo)
+                .collect(Collectors.toList());
     }
 }
