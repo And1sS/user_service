@@ -47,7 +47,7 @@ public class AuthenticationService extends GrpcAuthenticationServiceGrpc.GrpcAut
         final var accessToken = userService.loginUser(credentials);
 
         final var grpcDto = GrpcAccessTokenOutgoingDTO.newBuilder()
-                .setToken(accessToken.toString())
+                .setToken(accessToken.getToken().toString())
                 .setCreatedAt(accessToken.getCreatedAt().toString())
                 .build();
 
