@@ -1,4 +1,4 @@
-package com.and1ss.user_service.api.dto;
+package com.and1ss.user_service.api.rest.dto;
 
 import com.and1ss.user_service.service.model.AccessToken;
 import com.fasterxml.jackson.annotation.JsonProperty;

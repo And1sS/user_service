@@ -1,7 +1,7 @@
-package com.and1ss.user_service.api;
+package com.and1ss.user_service.api.rest;
 
-import com.and1ss.user_service.api.dto.AccessTokenRetrievalDTO;
-import com.and1ss.user_service.api.dto.AccountInfoRetrievalDTO;
+import com.and1ss.user_service.api.rest.dto.AccessTokenRetrievalDTO;
+import com.and1ss.user_service.api.rest.dto.AccountInfoRetrievalDTO;
 import com.and1ss.user_service.service.model.LoginInfo;
 import com.and1ss.user_service.service.model.RegisterInfo;
 import com.and1ss.user_service.service.UserService;

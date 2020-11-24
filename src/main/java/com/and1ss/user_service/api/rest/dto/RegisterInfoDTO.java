@@ -1,4 +1,4 @@
-package com.and1ss.user_service.api.dto;
+package com.and1ss.user_service.api.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
