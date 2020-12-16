@@ -60,20 +60,24 @@ public class AuthenticationService extends GrpcAuthenticationServiceGrpc.GrpcAut
             GrpcRegisterInfoDTO request,
             StreamObserver<GrpcAccountInfoRetrievalDTO> responseObserver
     ) {
-        final var registerInfo = new RegisterInfo(
-                request.getName(), request.getSurname(),
-                request.getLogin(), request.getPassword()
-        );
-        final var accountInfo = userService.registerUser(registerInfo);
+       try {
+           final var registerInfo = new RegisterInfo(
+                   request.getName(), request.getSurname(),
+                   request.getLogin(), request.getPassword()
+           );
+           final var accountInfo = userService.registerUser(registerInfo);
 
-        final var grpcDto = GrpcAccountInfoRetrievalDTO.newBuilder()
-                .setName(accountInfo.getName())
-                .setSurname(accountInfo.getSurname())
-                .setId(accountInfo.getId().toString())
-                .build();
+           final var grpcDto = GrpcAccountInfoRetrievalDTO.newBuilder()
+                   .setName(accountInfo.getName())
+                   .setSurname(accountInfo.getSurname())
+                   .setId(accountInfo.getId().toString())
+                   .build();
 
-        responseObserver.onNext(grpcDto);
-        responseObserver.onCompleted();
+           responseObserver.onNext(grpcDto);
+           responseObserver.onCompleted();
+       } catch (Exception e) {
+           responseObserver.onError(e);
+       }
     }
 
     @Override
